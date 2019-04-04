@@ -1,19 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:messenger/src/views/paritals/input_text.dart';
 
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          ClipPath(
-            child: Container(
-              height: 300,
-              color: Theme.of(context).primaryColor,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                ClipPath(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 2,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  clipper: _WelcomeBg(),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 20,
+                        color: Theme.of(context).primaryColor.withOpacity(0.1),
+                        offset: Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.message,
+                    size: 40,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ],
             ),
-            clipper: _WelcomeBg(),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Hi,',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Login to connect yout friends',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                  InputText(
+                    hint: 'Username',
+                  ),
+                  InputText(
+                    hint: 'Password',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -31,6 +92,6 @@ class _WelcomeBg extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return null;
+    return false;
   }
 }
